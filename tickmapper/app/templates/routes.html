@@ -1,0 +1,19 @@
+{%extends "app/base.html" %} {% block content %}
+<h1> Your Ticks </h1>
+{% load humanize %}
+{{ total_len_ft|intcomma }} ft ({{ total_len_mi|floatformat:3|intcomma }} miles) climbed!
+<table class='overflow-auto' height='1000px'>
+	<th>Date</th>
+	<th>Route</th>
+	<th>Grade</th>
+	<th>Length</th>
+	{% for tick in ticks %}
+	<tr>
+		<td> {{ tick.date }} </td>
+		<td> {{ tick.name }} </td>
+		<td> {{ tick.grade }} </td>
+		<td> {{ tick.height }} </td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

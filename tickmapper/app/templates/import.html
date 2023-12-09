@@ -1,0 +1,12 @@
+{%extends "app/base.html" %} {% block content %}
+{% if user.is_authenticated %}
+<h1> Import </h1>
+<form action="" method=POST enctype="multipart/form-data">
+{% csrf_token %}
+<input name="import" type="file"/>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% else %}
+<h1>Forbidden</h1>
+{% endif %}
+{% endblock %}
