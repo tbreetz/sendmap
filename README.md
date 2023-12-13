@@ -23,12 +23,32 @@ This is free and open source software developed by Tristan Breetz distributed un
 6. (LINUX/UNIX/MACOS ONLY) Run ```source ./env/bin/activate``` to enable the venv
    
    (WINDOWS ONLY) Run ```.\env\Scripts\activate.bat``` to enable the venv
-9. ```pip -r ./requirements.txt``` to install needed modules (Django, Requests, etc.)
-10. Generate a new database (sqlite, defined in ```./tickmapper/settings.py```) by running ```python manage.py makemigrations``` followed by ```python manage.py migrate```
-11. Run the app during development ```python manage.py runserver 0.0.0.0:8000```
-12. Navigate to http://127.0.0.1/ in a browser (or server IP if remote)
+7. ```pip -r ./requirements.txt``` to install needed modules (Django, Requests, etc.)
+8. Generate a new database (sqlite, defined in ```./tickmapper/settings.py```) by running ```python manage.py makemigrations``` followed by ```python manage.py migrate```
 
-    Note: If you are getting errors regarding HTTPS/HSTS/SSL, ensure that you have the relevant lines in ```./tickmapper/settings.py``` removed/commented out (NOT SUITABLE FOR PRODUCTION).
+9. In ```./tickmapper/settings.py```:
+
+      Change ```DEBUG = False``` to ```DEBUG = True```
+   
+      Change ```allowed_hosts``` to include your hostname/ip address:
+      ```
+      allowed_hosts = [127.0.0.1, localhost]
+      ```
+      Disable HTTPS and HSTS settings by commenting out the following lines:
+      ```
+      # HTTPS settings
+      SESSION_COOKIE_SECURE = True
+      CSRF_COOKIE_SECURE = True
+      SECURE_SSL_REDIRECT = True
+
+      # HSTS settings
+      SECURE_HSTS_SECONDS = 31536000 # 1 year
+      SECURE_HSTS_PRELOAD = True
+      SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+      ```
+11. Run the app for development ```python manage.py runserver 0.0.0.0:8000```
+12. Navigate to http://127.0.0.1/ in a browser (or server IP if remote)
+    
 
 ## To run once installed:
 1. (LINUX/UNIX/MACOS ONLY) Run ```source ./env/bin/activate``` to enable the venv
