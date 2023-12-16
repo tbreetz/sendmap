@@ -19,6 +19,8 @@ def routes(request):
         user = '0'
     ticks = tick.objects.filter(user=user)
     total_len_ft = ticks.all().aggregate(Sum('height'))['height__sum']
+    if total_len_ft is None:
+        total_len_ft = 0
     total_len_mi = total_len_ft / 5280.0
     return render(request, 'routes.html', {"ticks": ticks, 'total_len_ft': total_len_ft, 'total_len_mi': total_len_mi})
 
@@ -75,4 +77,7 @@ def import_ticks(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+def about(request):
+    return render(request, 'about.html')
 
