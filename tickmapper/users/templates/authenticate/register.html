@@ -1,0 +1,16 @@
+{%extends "app/base.html" %} {% block content %}
+{% if form.errors %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+ The form contained an error
+<button type="button" class="btn-close justify-content-right" data-bs-dismiss="alert"></button>
+</div>
+{% endif %}
+<form action="{% url 'register' %}" method=POST>
+	{% csrf_token %}
+<div class="mb-3">
+	<h1> Create an account </h1>
+	{{ form.as_p }}
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
