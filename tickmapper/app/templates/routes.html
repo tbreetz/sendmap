@@ -1,19 +1,36 @@
 {%extends "app/base.html" %} {% block content %}
+<style>
+table {
+	text-align: left;
+	position: relative;
+}
+
+th {
+	position: sticky;
+	top: 0;
+}
+</style>
+
+
 <h1> Your Ticks </h1>
 {% load humanize %}
 {{ total_len_ft|intcomma }} ft ({{ total_len_mi|floatformat:3|intcomma }} miles) climbed!
-<table class='overflow-auto' height='1000px'>
-	<th>Date</th>
-	<th>Route</th>
-	<th>Grade</th>
-	<th>Length</th>
-	{% for tick in ticks %}
-	<tr>
-		<td> {{ tick.date }} </td>
-		<td> {{ tick.name }} </td>
-		<td> {{ tick.grade }} </td>
-		<td> {{ tick.height }} </td>
-	</tr>
-	{% endfor %}
-</table>
+<div class='overflow-y-scroll' style='display: flex; flex-direction: column; max-height: 88vh'>
+	<table class="table table-bordered">
+		<tr>
+			<th>Date</th>
+			<th>Route</th>
+			<th>Grade</th>
+			<th>Length</th>
+		</tr>
+		{% for tick in ticks %}
+		<tr>
+			<td> {{ tick.date }} </td>
+			<td> {{ tick.name }} </td>
+			<td> {{ tick.grade }} </td>
+			<td> {{ tick.height }} </td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
 {% endblock %}
